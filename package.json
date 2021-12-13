@@ -1,5 +1,5 @@
 {
-  "name": "@aaronbassett/newrelic-netlify-build-plugin",
+  "name": "@aaronbassett/newrelic-netlify-plugin",
   "version": "0.1.0-alpha-2",
   "description": "New Relic Netlify Plugin [unofficial]",
   "main": "index.js",
