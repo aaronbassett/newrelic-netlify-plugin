@@ -1,0 +1,25 @@
+name: newrelic-netlify-build-plugin
+inputs:
+  - name: failBuildOnPluginError
+    description: Set this to false if you want the build to continue if the plugin encounters an error
+    default: true
+  - name: newrelicAccountId
+    description: Your New Relic Account ID (required for event tracking)
+  - name: newrelicLicenseKey
+    description: Your New Relic Ingest License Key (required for event tracking)
+  - name: newrelicAppId
+    description: Your New Relic APM App ID (required for deployment marking)
+  - name: newrelicApiKey
+    description: Your New Relic User Key (required for deployment marking)
+  - name: setDeploymentMarkers
+    description: Set this to to false to disable deployment marker creation
+    default: true
+  - name: setDeploymentMarkersForPreviews
+    description: Set this to true if you want to create deployment markers for deploy previews
+    default: false
+  - name: recordEventsForPreviews
+    description: Set this to true if you want to record events for deploy previews
+    default: false
+  - name: skipEvent
+    required: false
+    description: Disable recording of build events

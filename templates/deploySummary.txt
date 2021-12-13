@@ -1,0 +1,8 @@
+<% if(deploymentMarkerUUID) { %>
+ - Deployment Marker: <%= deploymentMarkerUUID %>
+<% } %>
+<% if(eventsRecorded.length > 0) { %>
+<% eventsRecorded.forEach(function(event){ %>
+ - <%= event.name %>: <%= event.uuid %>
+<% }) %>
+<% } %>
