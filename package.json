@@ -1,17 +1,28 @@
 {
   "name": "newrelic-netlify-build-plugin",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.1.0-beta-1",
+  "description": "New Relic Netlify Plugin [unofficial]",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "keywords": [
+    "netlify",
+    "netlify-plugin",
+    "performance",
+    "monitoring",
+    "instrumentation",
+    "newrelic"
+  ],
+  "homepage": "https://github.com/aaronbassett/newrelic-netlify-plugin",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aaronbassett/newrelic-netlify-plugin.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Aaron Bassett",
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=17.0.1"
+  },
   "dependencies": {
     "axios": "^0.24.0",
-    "ejs": "^3.1.6",
-    "newrelic": "^8.6.0"
+    "ejs": "^3.1.6"
   }
 }
