@@ -1,5 +1,3 @@
-require("newrelic")
-
 const {
   onPreBuild,
   onBuild,
