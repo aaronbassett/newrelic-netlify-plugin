@@ -12,5 +12,10 @@ const getTemplateString = (templateFileName) => {
 
 const changeLogTemplate = getTemplateString("changeLogTemplate.txt")
 const deploySummaryTemplate = getTemplateString("deploySummary.txt")
+const browserAgentTemplate = getTemplateString("browserAgent.txt")
 
-module.exports = { changeLogTemplate, deploySummaryTemplate }
+module.exports = {
+  changeLogTemplate,
+  deploySummaryTemplate,
+  browserAgentTemplate,
+}

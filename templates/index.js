@@ -1,3 +1,11 @@
-const { changeLogTemplate, deploySummaryTemplate } = require("./templates")
+const {
+  changeLogTemplate,
+  deploySummaryTemplate,
+  browserAgentTemplate,
+} = require("./templates")
 
-module.exports = { changeLogTemplate, deploySummaryTemplate }
+module.exports = {
+  changeLogTemplate,
+  deploySummaryTemplate,
+  browserAgentTemplate,
+}

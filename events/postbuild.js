@@ -1,5 +1,6 @@
 const { settings, getErrorResponse } = require("../settings")
 const { recordEvent } = require("./record")
+const { injectBrowserMonitoring } = require("../browserMonitoring")
 const { setDeployMarker } = require("../deploymarker/set")
 
 module.exports.onPostBuild = async (pluginApi) => {
@@ -23,6 +24,7 @@ module.exports.onPostBuild = async (pluginApi) => {
       return eventRecordingResponse
     }
 
+    await injectBrowserMonitoring(pluginApi)
     await setDeployMarker(pluginApi)
   }
 }

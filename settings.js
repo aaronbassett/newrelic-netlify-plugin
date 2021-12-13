@@ -7,9 +7,18 @@ const settings = (inputs) => {
     process.env.NEWRELIC_ACCOUNT_ID || inputs.newrelicAccountId
   const NEWRELIC_INGEST_LICENSE_KEY =
     process.env.NEWRELIC_INGEST_LICENSE_KEY || inputs.newrelicLicenseKey
+  const NEWRELIC_BROWSER_LICENSE_KEY =
+    process.env.NEWRELIC_BROWSER_LICENSE_KEY || inputs.newrelicBrowserLicenseKey
 
   const NEWRELIC_APP_ID = process.env.NEWRELIC_APP_ID || inputs.newrelicAppId
   const NEWRELIC_API_KEY = process.env.NEWRELIC_API_KEY || inputs.newrelicApiKey
+
+  const ENABLE_BROWSER_MONITORING =
+    process.env.ENABLE_BROWSER_MONITORING || inputs.enableBrowserMonitoring
+  const DISTRIBUTED_TRACING_ENABLED =
+    process.env.DISTRIBUTED_TRACING_ENABLED || inputs.distributedTracingEnabled
+  const COOKIES_ENABLED = process.env.COOKIES_ENABLED || inputs.cookiesEnabled
+
   const SET_DEPLOYMENT_MARKERS =
     process.env.SET_DEPLOYMENT_MARKERS || inputs.setDeploymentMarkers
   const SET_DEPLOYMENT_MARKERS_FOR_PREVIEWS =
@@ -34,8 +43,12 @@ const settings = (inputs) => {
     FAIL_BUILD_ON_PLUGIN_ERROR,
     NEWRELIC_ACCOUNT_ID,
     NEWRELIC_INGEST_LICENSE_KEY,
+    NEWRELIC_BROWSER_LICENSE_KEY,
     NEWRELIC_APP_ID,
     NEWRELIC_API_KEY,
+    ENABLE_BROWSER_MONITORING,
+    DISTRIBUTED_TRACING_ENABLED,
+    COOKIES_ENABLED,
     SET_DEPLOYMENT_MARKERS,
     SET_DEPLOYMENT_MARKERS_FOR_PREVIEWS,
     RECORD_EVENTS_FOR_PREVIEWS,

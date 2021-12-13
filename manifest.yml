@@ -4,11 +4,13 @@ inputs:
     description: Set this to false if you want the build to continue if the plugin encounters an error
     default: true
   - name: newrelicAccountId
-    description: Your New Relic Account ID (required for event tracking)
+    description: Your New Relic Account ID (required for event tracking & browser monitoring)
   - name: newrelicLicenseKey
     description: Your New Relic Ingest License Key (required for event tracking)
+  - name: newrelicBrowserLicenseKey
+    description: Your New Relic Browser Key (required for browser monitoring)
   - name: newrelicAppId
-    description: Your New Relic APM App ID (required for deployment marking)
+    description: Your New Relic APM App ID (required for deployment marking & browser monitoring)
   - name: newrelicApiKey
     description: Your New Relic User Key (required for deployment marking)
   - name: setDeploymentMarkers
@@ -23,3 +25,12 @@ inputs:
   - name: skipEvent
     required: false
     description: Disable recording of build events
+  - name: enableBrowserMonitoring
+    default: false
+    description: Enable browser monitoring for static sites
+  - name: distributedTracingEnabled
+    default: true
+    description: Enable distributed tracing for browser requests
+  - name: cookiesEnabled
+    default: true
+    description: Enable cookies for browser monitoring
