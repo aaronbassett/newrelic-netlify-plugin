@@ -5,7 +5,7 @@
 
 
 <% if(eventsRecorded.length > 0) { %>
-### Events recorded:
+**Events recorded:**
 <% eventsRecorded.forEach(function(event){ %>
  - <%= event.name %>: <%= event.uuid %>
 <% }) %>
@@ -13,7 +13,7 @@
 
 
 <% if(htmlFilesInjected.length > 0) { %>
-### Pages injected:
+**Pages injected:**
 <% htmlFilesInjected.forEach(function(file){ %>
  - <%= file %>
 <% }) %>
@@ -21,7 +21,7 @@
 
 
 <% if(htmlFilesNotInjected.length > 0) { %>
-### Pages not injected:
+**Pages not injected:**
 <% htmlFilesNotInjected.forEach(function(file){ %>
  - <%= file %>
 <% }) %>
