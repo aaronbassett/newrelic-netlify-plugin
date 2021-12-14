@@ -4,7 +4,6 @@ const ejs = require("ejs")
 const glob = require("glob")
 const { settings } = require("../settings")
 const { browserAgentTemplate } = require("../templates")
-const { insertHtmlSnippet } = require("./htmlInsertion")
 const { expressions } = require("./expressions")
 
 /* HTML Insertion code ported from the New Relic Python Agent
