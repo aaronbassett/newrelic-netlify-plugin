@@ -1,19 +1,28 @@
 ---
 <% if(deploymentMarkerUUID) { %>
-### Deployment marker: <%= deploymentMarkerUUID %>
+**Deployment marker:** _<%= deploymentMarkerUUID %>_
 <% } %>
+
+
 <% if(eventsRecorded.length > 0) { %>
-## Events recorded:<% eventsRecorded.forEach(function(event){ %>
+### Events recorded:
+<% eventsRecorded.forEach(function(event){ %>
  - <%= event.name %>: <%= event.uuid %>
 <% }) %>
 <% } %>
+
+
 <% if(htmlFilesInjected.length > 0) { %>
-## Pages injected:<% htmlFilesInjected.forEach(function(file){ %>
+### Pages injected:
+<% htmlFilesInjected.forEach(function(file){ %>
  - <%= file %>
 <% }) %>
 <% } %>
+
+
 <% if(htmlFilesNotInjected.length > 0) { %>
-## Pages not injected:<% htmlFilesNotInjected.forEach(function(file){ %>
+### Pages not injected:
+<% htmlFilesNotInjected.forEach(function(file){ %>
  - <%= file %>
 <% }) %>
 <% } %>
