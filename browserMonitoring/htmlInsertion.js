@@ -1,3 +1,10 @@
+const fs = require("fs")
+const path = require("path")
+const ejs = require("ejs")
+const glob = require("glob")
+const { settings } = require("../settings")
+const { browserAgentTemplate } = require("../templates")
+const { insertHtmlSnippet } = require("./htmlInsertion")
 const { expressions } = require("./expressions")
 
 /* HTML Insertion code ported from the New Relic Python Agent
@@ -7,7 +14,7 @@ const endIndexOfMatch = (match) => {
   return match ? match.index + match[0].length : 0
 }
 
-module.exports.insertHtmlSnippet = (html, htmlToBeInserted) => {
+const insertHtmlSnippet = (html, htmlToBeInserted) => {
   /* First determine if we have a body tag. If we don't we
   always give up even though strictly speaking we may not
   actually need it to exist. This is to ensure that we have
@@ -51,4 +58,33 @@ module.exports.insertHtmlSnippet = (html, htmlToBeInserted) => {
   return `${html.slice(0, insertionIndex)}${htmlToBeInserted}${html.slice(
     insertionIndex
   )}`
+}
+
+const browserAgentScriptTag = (browserAgentSettings) => {
+  return ejs.render(browserAgentTemplate, { browserAgentSettings })
+}
+
+module.exports.insertBrowserMonitoring = async (constants, inputs) => {
+  const {
+    NEWRELIC_ACCOUNT_ID,
+    NEWRELIC_APP_ID,
+    NEWRELIC_BROWSER_LICENSE_KEY,
+    DISTRIBUTED_TRACING_ENABLED,
+    COOKIES_ENABLED,
+  } = settings(inputs)
+
+  const htmlToBeInserted = browserAgentScriptTag({
+    DISTRIBUTED_TRACING_ENABLED,
+    COOKIES_ENABLED,
+    NEWRELIC_ACCOUNT_ID,
+    NEWRELIC_APP_ID,
+    NEWRELIC_BROWSER_LICENSE_KEY,
+  })
+
+  await glob.sync("**/*.html", { cwd: constants.PUBLISH_DIR }).map((file) => {
+    const htmlFilePath = path.resolve(constants.PUBLISH_DIR, file)
+    const html = fs.readFileSync(htmlFilePath).toString()
+    const updatedHtml = insertHtmlSnippet(html, htmlToBeInserted)
+    fs.writeFileSync(htmlFilePath, updatedHtml)
+  })
 }

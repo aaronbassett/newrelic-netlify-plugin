@@ -15,6 +15,9 @@ const settings = (inputs) => {
 
   const ENABLE_BROWSER_MONITORING =
     process.env.ENABLE_BROWSER_MONITORING || inputs.enableBrowserMonitoring
+  const ENABLE_BROWSER_MONITORING_FOR_PREVIEWS =
+    process.env.ENABLE_BROWSER_MONITORING_FOR_PREVIEWS ||
+    inputs.enableBrowserMonitoringForPreviews
   const DISTRIBUTED_TRACING_ENABLED =
     process.env.DISTRIBUTED_TRACING_ENABLED || inputs.distributedTracingEnabled
   const COOKIES_ENABLED = process.env.COOKIES_ENABLED || inputs.cookiesEnabled
@@ -47,6 +50,7 @@ const settings = (inputs) => {
     NEWRELIC_APP_ID,
     NEWRELIC_API_KEY,
     ENABLE_BROWSER_MONITORING,
+    ENABLE_BROWSER_MONITORING_FOR_PREVIEWS,
     DISTRIBUTED_TRACING_ENABLED,
     COOKIES_ENABLED,
     SET_DEPLOYMENT_MARKERS,

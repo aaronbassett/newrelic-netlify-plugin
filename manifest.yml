@@ -28,6 +28,9 @@ inputs:
   - name: enableBrowserMonitoring
     default: false
     description: Enable browser monitoring for static sites
+  - name: enableBrowserMonitoringForPreviews
+    description: Set this to true if you want to enable browser monitoring for deploy previews
+    default: false
   - name: distributedTracingEnabled
     default: true
     description: Enable distributed tracing for browser requests
