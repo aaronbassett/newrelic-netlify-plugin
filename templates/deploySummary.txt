@@ -1,13 +1,18 @@
 <% if(deploymentMarkerUUID) { %>
- - Deployment Marker: <%= deploymentMarkerUUID %>
+ - Deployment marker: <%= deploymentMarkerUUID %>
 <% } %>
 <% if(eventsRecorded.length > 0) { %>
-Events Recorded:<% eventsRecorded.forEach(function(event){ %>
+Events recorded:<% eventsRecorded.forEach(function(event){ %>
  - <%= event.name %>: <%= event.uuid %>
 <% }) %>
 <% } %>
 <% if(htmlFilesInjected.length > 0) { %>
-Pages Injected:<% htmlFilesInjected.forEach(function(file){ %>
+Pages injected:<% htmlFilesInjected.forEach(function(file){ %>
+ - <%= file %>
+<% }) %>
+<% } %>
+<% if(htmlFilesNotInjected.length > 0) { %>
+Pages not injected:<% htmlFilesNotInjected.forEach(function(file){ %>
  - <%= file %>
 <% }) %>
 <% } %>

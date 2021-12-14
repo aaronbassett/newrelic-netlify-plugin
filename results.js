@@ -5,6 +5,7 @@ class PluginResults {
   deploymentMarkerUUID = undefined
   eventsRecorded = []
   htmlFilesInjected = []
+  htmlFilesNotInjected = []
 
   addRecordedEvent(event) {
     this.eventsRecorded.push(event)
@@ -12,6 +13,10 @@ class PluginResults {
 
   addInjectedHtmlFile(file) {
     this.htmlFilesInjected.push(file)
+  }
+
+  addCouldNotInjectHtmlFile(file) {
+    this.htmlFilesNotInjected.push(file)
   }
 
   setDeploymentMarkerUUID(uuid) {
@@ -83,6 +88,7 @@ class PluginResults {
       deploymentMarkerUUID: this.deploymentMarkerUUID,
       eventsRecorded: this.eventsRecorded,
       htmlFilesInjected: this.htmlFilesInjected,
+      htmlFilesNotInjected: this.htmlFilesNotInjected,
     })
   }
 

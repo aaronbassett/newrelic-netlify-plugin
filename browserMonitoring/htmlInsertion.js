@@ -85,8 +85,12 @@ module.exports.insertBrowserMonitoring = async (constants, inputs) => {
     const htmlFilePath = path.resolve(constants.PUBLISH_DIR, file)
     const html = fs.readFileSync(htmlFilePath).toString()
     const updatedHtml = insertHtmlSnippet(html, htmlToBeInserted)
-    fs.writeFileSync(htmlFilePath, updatedHtml)
 
-    deploySummaryResults.addInjectedHtmlFile(file)
+    if (html != updatedHtml) {
+      fs.writeFileSync(htmlFilePath, updatedHtml)
+      deploySummaryResults.addInjectedHtmlFile(file)
+    } else {
+      deploySummaryResults.addCouldNotInjectHtmlFile(file)
+    }
   })
 }
