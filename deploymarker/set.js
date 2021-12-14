@@ -4,12 +4,12 @@ const { getErrorResponse, settings } = require("../settings")
 
 module.exports.setDeployMarker = async (pluginApi) => {
   const { inputs, utils } = pluginApi
-  const { build, git } = utils
+  const { build } = utils
 
   const errorResponse = getErrorResponse(inputs, build)
 
   return (
-    skipMarker(settings(inputs), git) ||
+    skipMarker(settings(inputs)) ||
     missingSettings(settings(inputs), errorResponse) ||
     (await makeRequest(pluginApi))
   )
