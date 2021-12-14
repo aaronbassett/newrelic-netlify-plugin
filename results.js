@@ -1,11 +1,17 @@
 const ejs = require("ejs")
+const pluralize = require("pluralize")
 
 class PluginResults {
   deploymentMarkerUUID = undefined
   eventsRecorded = []
+  htmlFilesInjected = []
 
   addRecordedEvent(event) {
     this.eventsRecorded.push(event)
+  }
+
+  addInjectedHtmlFile(file) {
+    this.htmlFilesInjected.push(file)
   }
 
   setDeploymentMarkerUUID(uuid) {
@@ -13,13 +19,55 @@ class PluginResults {
   }
 
   summary() {
-    return !this.deploymentMarkerUUID && this.eventsRecorded.length == 0
-      ? "Nothing to report"
-      : `We ${
-          this.deploymentMarkerUUID ? "marked a deployment and " : ""
-        }recorded ${this.eventsRecorded.length} ${
-          this.eventsRecorded.length == 1 ? "event" : "events"
-        }`
+    const eventCount = this.eventsRecorded.length
+    const htmlCount = this.htmlFilesInjected.length
+
+    switch ([this.deploymentMarkerUUID, eventCount > 0, htmlCount > 0]) {
+      case [false, false, false]:
+        return "We have nothing to report"
+      case [true, false, false]:
+        return "We marked this deployment"
+      case [true, true, false]:
+        return `We marked this deployment and recorded ${pluralize(
+          "event",
+          eventCount,
+          true
+        )}`
+      case [true, true, true]:
+        return `We marked this deployment, recorded ${pluralize(
+          "event",
+          eventCount,
+          true
+        )}, and added browser monitoring to ${pluralize(
+          "page",
+          htmlCount,
+          true
+        )}`
+      case [true, false, true]:
+        return `We marked this deployment and added browser monitoring to ${pluralize(
+          "page",
+          htmlCount,
+          true
+        )}`
+      case [false, true, false]:
+        return `We recorded ${pluralize("event", eventCount, true)}`
+      case [false, true, true]:
+        return `We recorded ${pluralize(
+          "event",
+          eventCount,
+          true
+        )} and added browser monitoring to ${pluralize(
+          "page",
+          htmlCount,
+          true
+        )}`
+      case [false, false, true]:
+        return `We added browser monitoring to ${pluralize(
+          "page",
+          htmlCount,
+          true
+        )}`
+    }
   }
 
   text() {
@@ -28,6 +76,7 @@ class PluginResults {
     return ejs.render(deploySummaryTemplate, {
       deploymentMarkerUUID: this.deploymentMarkerUUID,
       eventsRecorded: this.eventsRecorded,
+      htmlFilesInjected: this.htmlFilesInjected,
     })
   }
 

@@ -5,6 +5,7 @@ const glob = require("glob")
 const { settings } = require("../settings")
 const { browserAgentTemplate } = require("../templates")
 const { expressions } = require("./expressions")
+const { deploySummaryResults } = require("../results")
 
 /* HTML Insertion code ported from the New Relic Python Agent
   https://github.com/newrelic/newrelic-python-agent/blob/cb766940119ac5b8bf3b6175dede551d51e38e35/newrelic/api/html_insertion.py */
@@ -85,5 +86,7 @@ module.exports.insertBrowserMonitoring = async (constants, inputs) => {
     const html = fs.readFileSync(htmlFilePath).toString()
     const updatedHtml = insertHtmlSnippet(html, htmlToBeInserted)
     fs.writeFileSync(htmlFilePath, updatedHtml)
+
+    deploySummaryResults.addInjectedHtmlFile(file)
   })
 }
