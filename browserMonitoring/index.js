@@ -1,12 +1,20 @@
+const fs = require("fs")
+const path = require("path")
 const ejs = require("ejs")
+const glob = require("glob")
 const { settings, getErrorResponse } = require("../settings")
 const { browserAgentTemplate } = require("../templates")
+const { insertHtmlSnippet } = require("./htmlInsertion")
 
 const browserAgentScriptTag = (browserAgentSettings) => {
   return ejs.render(browserAgentTemplate, { browserAgentSettings })
 }
 
-module.exports.injectBrowserMonitoring = ({ inputs, utils }) => {
+module.exports.injectBrowserMonitoring = async ({
+  inputs,
+  utils,
+  constants,
+}) => {
   const { build } = utils
 
   const {
@@ -36,11 +44,12 @@ module.exports.injectBrowserMonitoring = ({ inputs, utils }) => {
     NEWRELIC_APP_ID,
     NEWRELIC_BROWSER_LICENSE_KEY,
   }
-  console.log("###### BROWSER AGENT SCRIPT TAG")
-  console.log(browserAgentScriptTag(browserAgentSettings))
-  console.log("")
-  console.log("")
-  console.log("")
 
-  return
+  const htmlToBeInserted = browserAgentScriptTag(browserAgentSettings)
+  await glob.sync("**/*.html", { cwd: constants.PUBLISH_DIR }).map((file) => {
+    const htmlFilePath = path.resolve(constants.PUBLISH_DIR, file)
+    const html = fs.readFileSync(htmlFilePath).toString()
+    const updatedHtml = insertHtmlSnippet(html, htmlToBeInserted)
+    fs.writeFileSync(htmlFilePath, updatedHtml)
+  })
 }
