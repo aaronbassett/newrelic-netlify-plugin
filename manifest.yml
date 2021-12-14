@@ -37,3 +37,6 @@ inputs:
   - name: cookiesEnabled
     default: true
     description: Enable cookies for browser monitoring
+  - name: deployMarkerRevisionTemplate
+    description: Deploy marker UUID structure (EJS string)
+    default: "<%=process.env.CONTEXT.toUpperCase()%>:<%=git.commits[0].sha%>"

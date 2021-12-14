@@ -1,8 +1,16 @@
 const ejs = require("ejs")
+const { settings } = require("../settings")
 const { changeLogTemplate } = require("../templates")
 
-const revision = (git) => {
-  return `${process.env.CONTEXT.toUpperCase()}:${git.commits[0].sha}`
+const revision = (constants, inputs, git, netlifyConfig, packageJson) => {
+  const { DEPLOY_MARKER_REVISION_TEMPLATE } = settings(inputs)
+  return ejs.render(DEPLOY_MARKER_REVISION_TEMPLATE, {
+    constants,
+    inputs,
+    git,
+    netlifyConfig,
+    packageJson,
+  })
 }
 
 const changelog = (git) => {

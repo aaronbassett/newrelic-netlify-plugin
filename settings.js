@@ -27,6 +27,10 @@ const settings = (inputs) => {
   const SET_DEPLOYMENT_MARKERS_FOR_PREVIEWS =
     process.env.SET_DEPLOYMENT_MARKERS_FOR_PREVIEWS ||
     inputs.setDeploymentMarkersForPreviews
+  const DEPLOY_MARKER_REVISION_TEMPLATE =
+    process.env.DEPLOY_MARKER_REVISION_TEMPLATE ||
+    inputs.deployMarkerRevisionTemplate
+
   const RECORD_EVENTS_FOR_PREVIEWS =
     process.env.RECORD_EVENTS_FOR_PREVIEWS || inputs.recordEventsForPreviews
   const SKIP_PRE_BUILD_EVENT =
@@ -55,6 +59,7 @@ const settings = (inputs) => {
     COOKIES_ENABLED,
     SET_DEPLOYMENT_MARKERS,
     SET_DEPLOYMENT_MARKERS_FOR_PREVIEWS,
+    DEPLOY_MARKER_REVISION_TEMPLATE,
     RECORD_EVENTS_FOR_PREVIEWS,
     SKIP_PRE_BUILD_EVENT,
     SKIP_BUILD_EVENT,
