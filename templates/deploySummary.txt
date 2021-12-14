@@ -2,12 +2,12 @@
  - Deployment Marker: <%= deploymentMarkerUUID %>
 <% } %>
 <% if(eventsRecorded.length > 0) { %>
-<%= Events Recorded: %><% eventsRecorded.forEach(function(event){ %>
+Events Recorded:<% eventsRecorded.forEach(function(event){ %>
  - <%= event.name %>: <%= event.uuid %>
 <% }) %>
 <% } %>
 <% if(htmlFilesInjected.length > 0) { %>
-<%= Pages Injected: %><% htmlFilesInjected.forEach(function(file){ %>
+Pages Injected:<% htmlFilesInjected.forEach(function(file){ %>
  - <%= file %>
 <% }) %>
 <% } %>
