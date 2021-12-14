@@ -1,6 +1,6 @@
 ---
 <% if(deploymentMarkerUUID) { %>
-**Deployment marker:** _<%= deploymentMarkerUUID %>_
+- **Deployment marker:** <%= deploymentMarkerUUID %>
 <% } %>
 
 
