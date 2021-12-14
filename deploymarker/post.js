@@ -5,11 +5,19 @@ const { revision, changelog, description } = require("./strings")
 const { settings, getErrorResponse } = require("../settings")
 
 module.exports.makeRequest = async (pluginApi) => {
-  const { constants, inputs, utils } = pluginApi
+  const { constants, inputs, utils, netlifyConfig, packageJson } = pluginApi
   const { build, git } = utils
 
   const { NEWRELIC_APP_ID, NEWRELIC_API_KEY } = settings(inputs)
   const errorResponse = getErrorResponse(inputs, build)
+
+  const revisionUUID = revision(
+    constants,
+    inputs,
+    git,
+    netlifyConfig,
+    packageJson
+  )
 
   try {
     const response = await axios({
@@ -21,7 +29,7 @@ module.exports.makeRequest = async (pluginApi) => {
       },
       data: {
         deployment: {
-          revision: revision(git),
+          revision: revisionUUID,
           changelog: changelog(git),
           description: description(git, constants),
           user: `${git.commits[0].committer.name}`,
@@ -33,20 +41,16 @@ module.exports.makeRequest = async (pluginApi) => {
     })
 
     if (response.status == 201) {
-      deploySummaryResults.setDeploymentMarkerUUID(revision(git))
+      deploySummaryResults.setDeploymentMarkerUUID(revisionUUID)
       return
     } else {
       return errorResponse(
-        `Could not create deployment marker "${revision(
-          git
-        )}" New Relic API responded with ${response.status} ${
-          response.statusText
-        }`
+        `Could not create deployment marker "${revisionUUID}" New Relic API responded with ${response.status} ${response.statusText}`
       )
     }
   } catch (error) {
     return errorResponse(
-      `Could not create deployment marker "${revision(git)}"`,
+      `Could not create deployment marker "${revisionUUID}"`,
       error
     )
   }
