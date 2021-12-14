@@ -20,7 +20,9 @@ const changelog = (git) => {
 }
 
 const description = (git, constants) => {
-  return `Deploying "${git.commits[0].message}" from branch ${
+  return `Deploying "${
+    git.commits[0].message ? git.commits[0].message : process.env.COMMIT_REF
+  }" from branch ${
     process.env.BRANCH
   } to ${process.env.CONTEXT.toUpperCase()} for site ${
     process.env.SITE_NAME

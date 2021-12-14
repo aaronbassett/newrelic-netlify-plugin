@@ -20,6 +20,22 @@ module.exports.makeRequest = async (pluginApi) => {
   )
 
   try {
+    const data = {
+      deployment: {
+        revision: revisionUUID,
+        changelog: changelog(git),
+        description: description(git, constants),
+        ...(git.commits[0].committer.name && {
+          user: git.commits[0].committer.name,
+        }),
+        ...(git.commits[0].committer.date && {
+          timestamp: new Date(
+            Date.parse(git.commits[0].committer.date)
+          ).toISOString(),
+        }),
+      },
+    }
+
     const response = await axios({
       url: `https://api.newrelic.com/v2/applications/${NEWRELIC_APP_ID}/deployments.json`,
       method: "post",
@@ -27,17 +43,7 @@ module.exports.makeRequest = async (pluginApi) => {
         "Content-Type": "application/json",
         "Api-Key": NEWRELIC_API_KEY,
       },
-      data: {
-        deployment: {
-          revision: revisionUUID,
-          changelog: changelog(git),
-          description: description(git, constants),
-          user: `${git.commits[0].committer.name}`,
-          timestamp: new Date(
-            Date.parse(git.commits[0].committer.date)
-          ).toISOString(),
-        },
-      },
+      data,
     })
 
     if (response.status == 201) {
