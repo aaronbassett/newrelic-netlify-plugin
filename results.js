@@ -68,6 +68,8 @@ class PluginResults {
           true
         )}`
     }
+
+    return "Our switch is broken"
   }
 
   text() {
