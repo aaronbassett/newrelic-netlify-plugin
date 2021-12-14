@@ -1,6 +1,6 @@
 {
   "name": "@aaronbassett/newrelic-netlify-plugin",
-  "version": "0.1.0-alpha-11",
+  "version": "0.1.0-alpha-12",
   "description": "New Relic Netlify Plugin [unofficial]",
   "main": "index.js",
   "keywords": [
@@ -24,6 +24,7 @@
   "dependencies": {
     "axios": "^0.24.0",
     "ejs": "^3.1.6",
-    "glob": "^7.2.0"
+    "glob": "^7.2.0",
+    "pluralize": "^8.0.0"
   }
 }
