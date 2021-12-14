@@ -7,6 +7,7 @@ Netlify:
 
 Deployment Branch: <%= env.BRANCH %>
 Commit Ref: <%= env.COMMIT_REF %>
+<% if(git.commits[0].sha != "") {%>
 Commits in this deployment: <%= git.commits.length %>
 Lines Edited: <%= git.linesOfCode %>
 
@@ -38,3 +39,4 @@ Commit Log:
         <%= commit.message %>
 
 <% }) %>
+<%}%>
