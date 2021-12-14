@@ -22,18 +22,24 @@ class PluginResults {
     const eventCount = this.eventsRecorded.length
     const htmlCount = this.htmlFilesInjected.length
 
-    switch ([this.deploymentMarkerUUID, eventCount > 0, htmlCount > 0]) {
-      case [false, false, false]:
+    switch (
+      [
+        this.deploymentMarkerUUID != undefined,
+        eventCount > 0,
+        htmlCount > 0,
+      ].toString()
+    ) {
+      case [false, false, false].toString():
         return "We have nothing to report"
-      case [true, false, false]:
+      case [true, false, false].toString():
         return "We marked this deployment"
-      case [true, true, false]:
+      case [true, true, false].toString():
         return `We marked this deployment and recorded ${pluralize(
           "event",
           eventCount,
           true
         )}`
-      case [true, true, true]:
+      case [true, true, true].toString():
         return `We marked this deployment, recorded ${pluralize(
           "event",
           eventCount,
@@ -43,15 +49,15 @@ class PluginResults {
           htmlCount,
           true
         )}`
-      case [true, false, true]:
+      case [true, false, true].toString():
         return `We marked this deployment and added browser monitoring to ${pluralize(
           "page",
           htmlCount,
           true
         )}`
-      case [false, true, false]:
+      case [false, true, false].toString():
         return `We recorded ${pluralize("event", eventCount, true)}`
-      case [false, true, true]:
+      case [false, true, true].toString():
         return `We recorded ${pluralize(
           "event",
           eventCount,
@@ -61,15 +67,13 @@ class PluginResults {
           htmlCount,
           true
         )}`
-      case [false, false, true]:
+      case [false, false, true].toString():
         return `We added browser monitoring to ${pluralize(
           "page",
           htmlCount,
           true
         )}`
     }
-
-    return "Our switch is broken"
   }
 
   text() {
