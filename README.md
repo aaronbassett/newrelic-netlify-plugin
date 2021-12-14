@@ -68,3 +68,27 @@ package = "@aaronbassett/newrelic-netlify-plugin"
 | distributedTracingEnabled          | Enable distributed tracing for browser requests                               | true          |
 | cookiesEnabled                     | Enable cookies for browser monitoring                                         | true          |
 | deployMarkerRevisionTemplate       | eploy marker UUID structure (EJS string)                                      | true          |
+
+### Deployment Tracking
+
+The plugin will automatically track each deployment in New Relic. It will also provide a detailed ChangeLog to help you see at a glance what has changed between deployments. Modify the `deployMarkerRevisionTemplate` to change the revision UUID using [EJS templates](https://ejs.co/).
+
+[![Deployment Tracking Interface in New Relic One](./media/deployments.png)](https://docs.newrelic.com/docs/apm/new-relic-apm/maintenance/record-monitor-deployments/)
+
+### Custom Events
+
+Track each successful build (and failure) with custom events.
+
+[![New Relic One graphing custom Netlify events](./media/custom-events.png)](https://docs.newrelic.com/docs/data-apis/understand-data/new-relic-data-types/#event-data)
+
+### Realtime Feedback in Netlify
+
+Get a quick overview of the actions the plugin has performed, without ever leaving Netlify. Once a build has completed your deploy summary is populated.
+
+![Netlify deploy summary listing New Relic Plugin actions](./media/deploy-summary.png)
+
+### Error Checking
+
+The plugin can identify many common configuration problems, and provides you detailed information on what needs to be changed.
+
+![New Relic Netlify plugin error checking](./media/error-checking.png)
