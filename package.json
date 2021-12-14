@@ -1,7 +1,7 @@
 {
   "name": "@aaronbassett/newrelic-netlify-plugin",
-  "version": "0.1.0-alpha-25",
-  "description": "New Relic Netlify Plugin [unofficial]",
+  "version": "0.1.0-alpha-26",
+  "description": "New Relic Netlify Plugin [unofficial] [alpha]",
   "main": "index.js",
   "keywords": [
     "netlify",
@@ -16,7 +16,13 @@
     "type": "git",
     "url": "https://github.com/aaronbassett/newrelic-netlify-plugin.git"
   },
-  "author": "Aaron Bassett",
+  "contributors": [
+    {
+      "name": "Aaron Bassett",
+      "email": "abassett@newrelic.com",
+      "url": "https://github.com/aaronbassett"
+    }
+  ],
   "license": "Apache-2.0",
   "engines": {
     "node": ">=16.13.1"
