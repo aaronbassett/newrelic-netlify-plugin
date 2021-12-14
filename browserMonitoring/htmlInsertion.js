@@ -45,10 +45,7 @@ module.exports.insertHtmlSnippet = (html, htmlToBeInserted) => {
   // Finally if no joy, insert before the start of the body.
   if (!insertionIndex) {
     const bodyFirstMatch = html.match(expressions.body)
-    insertionIndex =
-      bodyFirstMatch && bodyFirstMatch.index != 0
-        ? bodyFirstMatch.index - bodyFirstMatch[0].length + 1
-        : 0
+    insertionIndex = bodyFirstMatch?.index || 0
   }
 
   return `${html.slice(0, insertionIndex)}${htmlToBeInserted}${html.slice(
