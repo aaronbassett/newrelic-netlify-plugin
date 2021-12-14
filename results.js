@@ -35,49 +35,49 @@ class PluginResults {
       ].toString()
     ) {
       case [false, false, false].toString():
-        return "_We have nothing to report_"
+        return "We have nothing to report 😥"
       case [true, false, false].toString():
-        return "We marked this deployment"
+        return "We marked this deployment 🎉"
       case [true, true, false].toString():
-        return `We marked this deployment and recorded **${pluralize(
+        return `We marked this deployment and recorded ${pluralize(
           "event",
           eventCount,
           true
-        )}**`
+        )}`
       case [true, true, true].toString():
-        return `We marked this deployment, recorded **${pluralize(
+        return `We marked this deployment, recorded ${pluralize(
           "event",
           eventCount,
           true
-        )}**, and added browser monitoring to **${pluralize(
+        )}, and added browser monitoring to ${pluralize(
           "page",
           htmlCount,
           true
-        )}**`
+        )}`
       case [true, false, true].toString():
-        return `We marked this deployment and added browser monitoring to **${pluralize(
+        return `We marked this deployment and added browser monitoring to ${pluralize(
           "page",
           htmlCount,
           true
-        )}**`
+        )}`
       case [false, true, false].toString():
-        return `We recorded **${pluralize("event", eventCount, true)}**`
+        return `We recorded ${pluralize("event", eventCount, true)}`
       case [false, true, true].toString():
-        return `We recorded **${pluralize(
+        return `We recorded ${pluralize(
           "event",
           eventCount,
           true
-        )}** and added browser monitoring to **${pluralize(
+        )} and added browser monitoring to ${pluralize(
           "page",
           htmlCount,
           true
-        )}**`
+        )}`
       case [false, false, true].toString():
-        return `We added browser monitoring to **${pluralize(
+        return `We added browser monitoring to ${pluralize(
           "page",
           htmlCount,
           true
-        )}**`
+        )}`
     }
   }
 
