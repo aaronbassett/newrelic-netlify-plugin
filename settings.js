@@ -21,6 +21,8 @@ const settings = (inputs) => {
   const DISTRIBUTED_TRACING_ENABLED =
     process.env.DISTRIBUTED_TRACING_ENABLED || inputs.distributedTracingEnabled
   const COOKIES_ENABLED = process.env.COOKIES_ENABLED || inputs.cookiesEnabled
+  const HTML_INJECTION_CONCURRENCY =
+    process.env.HTML_INJECTION_CONCURRENCY || inputs.htmlInjectionConcurrency
 
   const SET_DEPLOYMENT_MARKERS =
     process.env.SET_DEPLOYMENT_MARKERS || inputs.setDeploymentMarkers
@@ -57,6 +59,7 @@ const settings = (inputs) => {
     ENABLE_BROWSER_MONITORING_FOR_PREVIEWS,
     DISTRIBUTED_TRACING_ENABLED,
     COOKIES_ENABLED,
+    HTML_INJECTION_CONCURRENCY,
     SET_DEPLOYMENT_MARKERS,
     SET_DEPLOYMENT_MARKERS_FOR_PREVIEWS,
     REVISION_TEMPLATE,

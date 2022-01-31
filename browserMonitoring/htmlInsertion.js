@@ -96,6 +96,7 @@ export const insertBrowserMonitoring = async (constants, inputs) => {
     NEWRELIC_BROWSER_LICENSE_KEY,
     DISTRIBUTED_TRACING_ENABLED,
     COOKIES_ENABLED,
+    HTML_INJECTION_CONCURRENCY,
   } = settings(inputs)
 
   const htmlToBeInserted = browserAgentScriptTag({
@@ -114,7 +115,7 @@ export const insertBrowserMonitoring = async (constants, inputs) => {
     }
   })
 
-  const result = await pMap(fileDetails, insertBrowserAgent, { concurrency: 2 })
-
-  console.log(result)
+  await pMap(fileDetails, insertBrowserAgent, {
+    concurrency: HTML_INJECTION_CONCURRENCY,
+  })
 }

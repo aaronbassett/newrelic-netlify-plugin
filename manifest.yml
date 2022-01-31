@@ -37,6 +37,9 @@ inputs:
   - name: cookiesEnabled
     default: true
     description: Enable cookies for browser monitoring
+  - name: htmlInjectionConcurrency
+    default: 5
+    description: Number of concurrently pending promises to use when injecting browser agent
   - name: revisionTemplate
     description: Deploy marker revision and release version id structure (EJS string)
     default: "<%if(git.commits[0].message){%><%=git.commits[0].message.slice(0,25)%>-<%}%><%=process.env.CONTEXT%>-<%=process.env.COMMIT_REF.slice(0, 7)%>-<%=process.env.DEPLOY_ID.slice(-6)%>-<%=process.env.BUILD_ID.slice(-6)%>"
