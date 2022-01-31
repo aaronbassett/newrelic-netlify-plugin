@@ -1,4 +1,4 @@
-import { changeLogTemplate } from "../templates.js"
+import { changeLogTemplate } from "../templates/index.js"
 import ejs from "ejs"
 import { settings } from "../settings.js"
 

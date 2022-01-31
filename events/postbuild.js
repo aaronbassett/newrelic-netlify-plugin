@@ -1,6 +1,6 @@
 import { getErrorResponse, settings } from "../settings.js"
 
-import { injectBrowserMonitoring } from "../browserMonitoring.js"
+import { injectBrowserMonitoring } from "../browserMonitoring/index.js"
 import { recordEvent } from "./record.js"
 import { setDeployMarker } from "../deploymarker/set.js"
 

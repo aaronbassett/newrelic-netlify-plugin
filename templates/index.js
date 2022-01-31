@@ -1,11 +1,7 @@
-const {
+import {
+  browserAgentTemplate,
   changeLogTemplate,
   deploySummaryTemplate,
-  browserAgentTemplate,
-} = require("./templates")
+} from "./templates.js"
 
-module.exports = {
-  changeLogTemplate,
-  deploySummaryTemplate,
-  browserAgentTemplate,
-}
+export { changeLogTemplate, deploySummaryTemplate, browserAgentTemplate }

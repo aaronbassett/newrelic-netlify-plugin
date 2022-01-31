@@ -5,6 +5,6 @@ import {
   onPostBuild,
   onPreBuild,
   onSuccess,
-} from "./events.js"
+} from "./events/index.js"
 
 export { onPreBuild, onBuild, onPostBuild, onSuccess, onError, onEnd }

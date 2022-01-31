@@ -1,4 +1,4 @@
-import { browserAgentTemplate } from "../templates.js"
+import { browserAgentTemplate } from "../templates/index.js"
 import { deploySummaryResults } from "../results.js"
 import ejs from "ejs"
 import { expressions } from "./expressions.js"
