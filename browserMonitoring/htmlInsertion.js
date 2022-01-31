@@ -2,6 +2,7 @@ const fs = require("fs")
 const path = require("path")
 const ejs = require("ejs")
 const glob = require("glob")
+const pMap = reqire("p-map")
 const { settings } = require("../settings")
 const { browserAgentTemplate } = require("../templates")
 const { expressions } = require("./expressions")
@@ -64,6 +65,18 @@ const browserAgentScriptTag = (browserAgentSettings) => {
   return ejs.render(browserAgentTemplate, { browserAgentSettings })
 }
 
+const insertBrowserAgent = async (file) => {
+  const html = await fs.readFile(file.path).toString()
+  const updatedHtml = insertHtmlSnippet(html, file.htmlToBeInserted)
+
+  if (html != updatedHtml) {
+    await fs.writeFile(file.path, updatedHtml)
+    deploySummaryResults.addInjectedHtmlFile(file.path)
+  } else {
+    deploySummaryResults.addCouldNotInjectHtmlFile(file.path)
+  }
+}
+
 module.exports.insertBrowserMonitoring = async (constants, inputs) => {
   const {
     NEWRELIC_ACCOUNT_ID,
@@ -81,16 +94,16 @@ module.exports.insertBrowserMonitoring = async (constants, inputs) => {
     NEWRELIC_BROWSER_LICENSE_KEY,
   })
 
-  await glob.sync("**/*.html", { cwd: constants.PUBLISH_DIR }).map((file) => {
-    const htmlFilePath = path.resolve(constants.PUBLISH_DIR, file)
-    const html = fs.readFileSync(htmlFilePath).toString()
-    const updatedHtml = insertHtmlSnippet(html, htmlToBeInserted)
+  const htmlFiles = await glob
+    .sync("**/*.html", { cwd: constants.PUBLISH_DIR })
+    .map((file) => {
+      return {
+        path: path.resolve(constants.PUBLISH_DIR, file),
+        htmlToBeInserted,
+      }
+    })
 
-    if (html != updatedHtml) {
-      fs.writeFileSync(htmlFilePath, updatedHtml)
-      deploySummaryResults.addInjectedHtmlFile(file)
-    } else {
-      deploySummaryResults.addCouldNotInjectHtmlFile(file)
-    }
-  })
+  const result = await pMap(htmlFiles, insertBrowserAgent, { concurrency: 2 })
+
+  console.log(result)
 }
