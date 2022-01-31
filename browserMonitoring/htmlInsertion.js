@@ -1,8 +1,9 @@
+import pMap from "p-map"
+
 const fs = require("fs")
 const path = require("path")
 const ejs = require("ejs")
 const glob = require("glob")
-const pMap = require("p-map")
 const { settings } = require("../settings")
 const { browserAgentTemplate } = require("../templates")
 const { expressions } = require("./expressions")
