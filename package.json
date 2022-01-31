@@ -1,6 +1,6 @@
 {
   "name": "@aaronbassett/newrelic-netlify-plugin",
-  "version": "0.1.0-alpha-30",
+  "version": "0.1.0-alpha-31",
   "description": "New Relic Netlify Plugin [unofficial] [alpha]",
   "main": "index.js",
   "keywords": [
