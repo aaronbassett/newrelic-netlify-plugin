@@ -2,7 +2,7 @@ import { browserAgentTemplate } from "../templates/index.js"
 import { deploySummaryResults } from "../results.js"
 import ejs from "ejs"
 import { expressions } from "./expressions.js"
-import fs from "fs"
+import { promises as fs } from "fs"
 import glob from "glob"
 import pMap from "p-map"
 import path from "path"
@@ -61,13 +61,25 @@ const insertHtmlSnippet = (html, htmlToBeInserted) => {
   )}`
 }
 
+const getListOfHTMLFiles = (publishDir) => {
+  return new Promise((resolve, reject) => {
+    glob("**/*.html", { cwd: publishDir }, (err, files) => {
+      if (err) {
+        reject(err)
+      } else {
+        resolve(files)
+      }
+    })
+  })
+}
+
 const browserAgentScriptTag = (browserAgentSettings) => {
   return ejs.render(browserAgentTemplate, { browserAgentSettings })
 }
 
 const insertBrowserAgent = async (file) => {
-  const html = await fs.readFile(file.path).toString()
-  const updatedHtml = insertHtmlSnippet(html, file.htmlToBeInserted)
+  const html = await fs.readFile(file.path)
+  const updatedHtml = insertHtmlSnippet(html.toString(), file.htmlToBeInserted)
 
   if (html != updatedHtml) {
     await fs.writeFile(file.path, updatedHtml)
@@ -94,16 +106,15 @@ export const insertBrowserMonitoring = async (constants, inputs) => {
     NEWRELIC_BROWSER_LICENSE_KEY,
   })
 
-  const htmlFiles = await glob
-    .sync("**/*.html", { cwd: constants.PUBLISH_DIR })
-    .map((file) => {
-      return {
-        path: path.resolve(constants.PUBLISH_DIR, file),
-        htmlToBeInserted,
-      }
-    })
+  const htmlFiles = getListOfHTMLFiles(constants.PUBLISH_DIR)
+  const fileDetails = htmlFiles.map((file) => {
+    return {
+      path: path.resolve(constants.PUBLISH_DIR, file),
+      htmlToBeInserted,
+    }
+  })
 
-  const result = await pMap(htmlFiles, insertBrowserAgent, { concurrency: 2 })
+  const result = await pMap(fileDetails, insertBrowserAgent, { concurrency: 2 })
 
   console.log(result)
 }
