@@ -1,5 +1,10 @@
+import path, { dirname } from "path"
+
+import { fileURLToPath } from "url"
 import fs from "fs"
-import path from "path"
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
 
 const getTemplateString = (templateFileName) => {
   const TEMPLATE_FILE_PATH = path.resolve(__dirname, templateFileName)
