@@ -106,7 +106,7 @@ export const insertBrowserMonitoring = async (constants, inputs) => {
     NEWRELIC_BROWSER_LICENSE_KEY,
   })
 
-  const htmlFiles = getListOfHTMLFiles(constants.PUBLISH_DIR)
+  const htmlFiles = await getListOfHTMLFiles(constants.PUBLISH_DIR)
   const fileDetails = htmlFiles.map((file) => {
     return {
       path: path.resolve(constants.PUBLISH_DIR, file),
