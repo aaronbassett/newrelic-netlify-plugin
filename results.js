@@ -1,3 +1,4 @@
+import { deploySummaryTemplate } from "./templates/index.js"
 import ejs from "ejs"
 import pluralize from "pluralize"
 
@@ -82,8 +83,6 @@ class PluginResults {
   }
 
   text() {
-    const { deploySummaryTemplate } = require("./templates")
-
     return ejs.render(deploySummaryTemplate, {
       deploymentMarkerUUID: this.deploymentMarkerUUID,
       eventsRecorded: this.eventsRecorded,
