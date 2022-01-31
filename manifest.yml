@@ -15,7 +15,7 @@ inputs:
     description: Your New Relic User Key (required for deployment marking)
   - name: setDeploymentMarkers
     description: Set this to to false to disable deployment marker creation
-    default: true
+    default: false
   - name: setDeploymentMarkersForPreviews
     description: Set this to true if you want to create deployment markers for deploy previews
     default: false
@@ -37,6 +37,6 @@ inputs:
   - name: cookiesEnabled
     default: true
     description: Enable cookies for browser monitoring
-  - name: deployMarkerRevisionTemplate
-    description: Deploy marker UUID structure (EJS string)
+  - name: revisionTemplate
+    description: Deploy marker revision and release version id structure (EJS string)
     default: "<%if(git.commits[0].message){%><%=git.commits[0].message.slice(0,25)%>-<%}%><%=process.env.CONTEXT%>-<%=process.env.COMMIT_REF.slice(0, 7)%>-<%=process.env.DEPLOY_ID.slice(-6)%>-<%=process.env.BUILD_ID.slice(-6)%>"

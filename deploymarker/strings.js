@@ -3,8 +3,8 @@ const { settings } = require("../settings")
 const { changeLogTemplate } = require("../templates")
 
 const revision = (constants, inputs, git, netlifyConfig, packageJson) => {
-  const { DEPLOY_MARKER_REVISION_TEMPLATE } = settings(inputs)
-  return ejs.render(DEPLOY_MARKER_REVISION_TEMPLATE, {
+  const { REVISION_TEMPLATE } = settings(inputs)
+  return ejs.render(REVISION_TEMPLATE, {
     constants,
     inputs,
     git,
