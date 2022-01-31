@@ -1,7 +1,8 @@
-const { settings, getErrorResponse } = require("../settings")
-const { recordEvent } = require("./record")
+import { getErrorResponse, settings } from "../settings.js"
 
-module.exports.onPreBuild = async (pluginApi) => {
+import { recordEvent } from "./record.js"
+
+export const onPreBuild = async (pluginApi) => {
   const { constants, inputs, utils } = pluginApi
   const { build } = utils
 

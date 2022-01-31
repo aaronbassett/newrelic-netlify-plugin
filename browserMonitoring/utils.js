@@ -1,4 +1,4 @@
-module.exports.skipBrowserMonitoring = ({
+export const skipBrowserMonitoring = ({
   IS_PREVIEW,
   ENABLE_BROWSER_MONITORING,
   ENABLE_BROWSER_MONITORING_FOR_PREVIEWS,
@@ -11,7 +11,7 @@ module.exports.skipBrowserMonitoring = ({
   return false
 }
 
-module.exports.missingSettings = (
+export const missingSettings = (
   { NEWRELIC_ACCOUNT_ID, NEWRELIC_APP_ID, NEWRELIC_BROWSER_LICENSE_KEY },
   errorResponse
 ) => {

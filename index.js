@@ -1,17 +1,10 @@
-const {
-  onPreBuild,
+import {
   onBuild,
-  onPostBuild,
-  onSuccess,
-  onError,
   onEnd,
-} = require("./events")
+  onError,
+  onPostBuild,
+  onPreBuild,
+  onSuccess,
+} from "./events.js"
 
-module.exports = {
-  onPreBuild: onPreBuild,
-  onBuild: onBuild,
-  onPostBuild: onPostBuild,
-  onSuccess: onSuccess,
-  onError: onError,
-  onEnd: onEnd,
-}
+export { onPreBuild, onBuild, onPostBuild, onSuccess, onError, onEnd }

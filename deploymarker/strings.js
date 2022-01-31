@@ -1,6 +1,6 @@
-const ejs = require("ejs")
-const { settings } = require("../settings")
-const { changeLogTemplate } = require("../templates")
+import { changeLogTemplate } from "../templates.js"
+import ejs from "ejs"
+import { settings } from "../settings.js"
 
 const revision = (constants, inputs, git, netlifyConfig, packageJson) => {
   const { REVISION_TEMPLATE } = settings(inputs)
@@ -29,4 +29,4 @@ const description = (git, constants) => {
   } on Netlify v${constants.NETLIFY_BUILD_VERSION}`
 }
 
-module.exports = { revision, changelog, description }
+export { revision, changelog, description }

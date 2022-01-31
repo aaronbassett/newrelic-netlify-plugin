@@ -1,8 +1,9 @@
-const { skipMarker, missingSettings } = require("./utils")
-const { makeRequest } = require("./post")
-const { getErrorResponse, settings } = require("../settings")
+import { getErrorResponse, settings } from "../settings.js"
+import { missingSettings, skipMarker } from "./utils.js"
 
-module.exports.setDeployMarker = async (pluginApi) => {
+import { makeRequest } from "./post.js"
+
+export const setDeployMarker = async (pluginApi) => {
   const { inputs, utils } = pluginApi
   const { build } = utils
 

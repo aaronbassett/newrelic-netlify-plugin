@@ -1,8 +1,9 @@
 {
+  "type": "module",
   "name": "@aaronbassett/newrelic-netlify-plugin",
-  "version": "0.1.0-alpha-32",
+  "version": "0.1.0-alpha-33",
   "description": "New Relic Netlify Plugin [unofficial] [alpha]",
-  "main": "index.js",
+  "exports": "./index.js",
   "keywords": [
     "netlify",
     "netlify-plugin",

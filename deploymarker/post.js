@@ -1,10 +1,10 @@
-const axios = require("axios")
+import { changelog, description, revision } from "./strings.js"
+import { getErrorResponse, settings } from "../settings.js"
 
-const { deploySummaryResults } = require("../results")
-const { revision, changelog, description } = require("./strings")
-const { settings, getErrorResponse } = require("../settings")
+import axios from "axios"
+import { deploySummaryResults } from "../results.js"
 
-module.exports.makeRequest = async (pluginApi) => {
+export const makeRequest = async (pluginApi) => {
   const { constants, inputs, utils, netlifyConfig, packageJson } = pluginApi
   const { build, git } = utils
 

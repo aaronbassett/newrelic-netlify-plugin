@@ -1,13 +1,12 @@
+import { browserAgentTemplate } from "../templates.js"
+import { deploySummaryResults } from "../results.js"
+import ejs from "ejs"
+import { expressions } from "./expressions.js"
+import fs from "fs"
+import glob from "glob"
 import pMap from "p-map"
-
-const fs = require("fs")
-const path = require("path")
-const ejs = require("ejs")
-const glob = require("glob")
-const { settings } = require("../settings")
-const { browserAgentTemplate } = require("../templates")
-const { expressions } = require("./expressions")
-const { deploySummaryResults } = require("../results")
+import path from "path"
+import { settings } from "../settings.js"
 
 /* HTML Insertion code ported from the New Relic Python Agent
   https://github.com/newrelic/newrelic-python-agent/blob/cb766940119ac5b8bf3b6175dede551d51e38e35/newrelic/api/html_insertion.py */
@@ -78,7 +77,7 @@ const insertBrowserAgent = async (file) => {
   }
 }
 
-module.exports.insertBrowserMonitoring = async (constants, inputs) => {
+export const insertBrowserMonitoring = async (constants, inputs) => {
   const {
     NEWRELIC_ACCOUNT_ID,
     NEWRELIC_APP_ID,

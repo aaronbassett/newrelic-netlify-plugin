@@ -1,5 +1,5 @@
-const ejs = require("ejs")
-const pluralize = require("pluralize")
+import ejs from "ejs"
+import pluralize from "pluralize"
 
 class PluginResults {
   deploymentMarkerUUID = undefined
@@ -101,4 +101,6 @@ class PluginResults {
   }
 }
 
-module.exports.deploySummaryResults = new PluginResults()
+const deploySummaryResults = new PluginResults()
+
+export { deploySummaryResults }

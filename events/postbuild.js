@@ -1,9 +1,10 @@
-const { settings, getErrorResponse } = require("../settings")
-const { recordEvent } = require("./record")
-const { injectBrowserMonitoring } = require("../browserMonitoring")
-const { setDeployMarker } = require("../deploymarker/set")
+import { getErrorResponse, settings } from "../settings.js"
 
-module.exports.onPostBuild = async (pluginApi) => {
+import { injectBrowserMonitoring } from "../browserMonitoring.js"
+import { recordEvent } from "./record.js"
+import { setDeployMarker } from "../deploymarker/set.js"
+
+export const onPostBuild = async (pluginApi) => {
   const { constants, inputs, utils } = pluginApi
   const { build } = utils
 

@@ -1,12 +1,9 @@
-const { settings, getErrorResponse } = require("../settings")
-const { skipBrowserMonitoring, missingSettings } = require("./utils")
-const { insertBrowserMonitoring } = require("./htmlInsertion")
+import { getErrorResponse, settings } from "../settings.js"
+import { missingSettings, skipBrowserMonitoring } from "./utils.js"
 
-module.exports.injectBrowserMonitoring = async ({
-  inputs,
-  utils,
-  constants,
-}) => {
+import { insertBrowserMonitoring } from "./htmlInsertion.js"
+
+export const injectBrowserMonitoring = async ({ inputs, utils, constants }) => {
   const { build } = utils
   const errorResponse = getErrorResponse(inputs, build)
 

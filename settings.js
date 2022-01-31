@@ -75,4 +75,4 @@ const getErrorResponse = (inputs, build) => {
   return FAIL_BUILD_ON_PLUGIN_ERROR ? build.failBuild : build.failPlugin
 }
 
-module.exports = { settings, getErrorResponse }
+export { settings, getErrorResponse }

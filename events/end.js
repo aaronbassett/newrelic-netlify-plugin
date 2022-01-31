@@ -1,9 +1,8 @@
-const { settings } = require("../settings")
-const { recordEvent } = require("./record")
+import { deploySummaryResults } from "../results.js"
+import { recordEvent } from "./record.js"
+import { settings } from "../settings.js"
 
-const { deploySummaryResults } = require("../results")
-
-module.exports.onEnd = async (pluginApi) => {
+export const onEnd = async (pluginApi) => {
   const { constants, inputs, utils } = pluginApi
   const { build, status } = utils
 

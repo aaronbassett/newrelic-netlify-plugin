@@ -1,8 +1,7 @@
-const axios = require("axios")
+import axios from "axios"
+import { deploySummaryResults } from "../results.js"
 
-const { deploySummaryResults } = require("../results")
-
-module.exports.recordEvent = async (eventData) => {
+export const recordEvent = async (eventData) => {
   const { isEnabled, eventName, settings, constants, errorResponse } = eventData
 
   const {

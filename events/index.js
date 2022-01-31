@@ -1,12 +1,12 @@
-const { recordEvent } = require("./record")
-const { onPreBuild } = require("./prebuild")
-const { onBuild } = require("./build")
-const { onPostBuild } = require("./postbuild")
-const { onSuccess } = require("./success")
-const { onError } = require("./error")
-const { onEnd } = require("./end")
+import { onBuild } from "./build.js"
+import { onEnd } from "./end.js"
+import { onError } from "./error.js"
+import { onPostBuild } from "./postbuild.js"
+import { onPreBuild } from "./prebuild.js"
+import { onSuccess } from "./success.js"
+import { recordEvent } from "./record.js"
 
-module.exports = {
+export {
   recordEvent,
   onPreBuild,
   onBuild,

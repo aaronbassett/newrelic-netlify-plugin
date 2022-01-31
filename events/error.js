@@ -1,7 +1,7 @@
-const { settings } = require("../settings")
-const { recordEvent } = require("./record")
+import { recordEvent } from "./record.js"
+import { settings } from "../settings.js"
 
-module.exports.onError = async (pluginApi) => {
+export const onError = async (pluginApi) => {
   const { constants, inputs, utils } = pluginApi
   const { build } = utils
 

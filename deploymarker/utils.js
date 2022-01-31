@@ -1,4 +1,4 @@
-module.exports.skipMarker = ({
+export const skipMarker = ({
   IS_PREVIEW,
   SET_DEPLOYMENT_MARKERS,
   SET_DEPLOYMENT_MARKERS_FOR_PREVIEWS,
@@ -11,7 +11,7 @@ module.exports.skipMarker = ({
   return false
 }
 
-module.exports.missingSettings = (
+export const missingSettings = (
   { NEWRELIC_APP_ID, NEWRELIC_API_KEY },
   errorResponse
 ) => {

@@ -1,4 +1,4 @@
-module.exports.expressions = {
+export const expressions = {
   body: /<body[^>]*>/i,
   head: /<head[^>]*>/i,
   meta: {
