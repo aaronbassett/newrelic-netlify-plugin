@@ -5,6 +5,9 @@ import { recordEvent } from "./record.js"
 import { setDeployMarker } from "../deploymarker/set.js"
 
 export const onPostBuild = async (pluginApi) => {
+  console.log(pluginApi)
+  console.log(pluginApi.utils)
+
   const { constants, inputs, utils } = pluginApi
   const { build } = utils
 
