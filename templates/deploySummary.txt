@@ -20,7 +20,7 @@
 <% }) %>
 <% } else { %>
 **Pages injected:**
-Browser agent added to <b><%= htmlFilesInjected.length %> pages</b>
+Browser agent added to <%= htmlFilesInjected.length %> pages
 <% } %>
 <% } %>
 
@@ -32,6 +32,6 @@ Browser agent added to <b><%= htmlFilesInjected.length %> pages</b>
 <% }) %>
 <% } else { %>
 **Pages not injected:**
-Browser agent was not added to <b><%= htmlFilesNotInjected.length %> pages</b>
+Browser agent was not added to <%= htmlFilesNotInjected.length %> pages
 <% } %>
 <% } %>
