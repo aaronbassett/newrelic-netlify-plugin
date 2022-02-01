@@ -6,6 +6,7 @@ import { promises as fs } from "fs"
 import glob from "glob"
 import pMap from "p-map"
 import path from "path"
+import { revision } from "../deploymarker/strings.js"
 import { settings } from "../settings.js"
 
 /* HTML Insertion code ported from the New Relic Python Agent
@@ -89,7 +90,10 @@ const insertBrowserAgent = async (file) => {
   }
 }
 
-export const insertBrowserMonitoring = async (constants, inputs) => {
+export const insertBrowserMonitoring = async (pluginApi) => {
+  const { constants, inputs, utils, netlifyConfig, packageJson } = pluginApi
+  const { build, git } = utils
+
   const {
     NEWRELIC_ACCOUNT_ID,
     NEWRELIC_APP_ID,
@@ -105,6 +109,8 @@ export const insertBrowserMonitoring = async (constants, inputs) => {
     NEWRELIC_ACCOUNT_ID,
     NEWRELIC_APP_ID,
     NEWRELIC_BROWSER_LICENSE_KEY,
+    revision: revision(constants, inputs, git, netlifyConfig, packageJson),
+    project_name: packageJson.name,
   })
 
   const htmlFiles = await getListOfHTMLFiles(constants.PUBLISH_DIR)
