@@ -91,9 +91,6 @@ const insertBrowserAgent = async (file) => {
 }
 
 export const insertBrowserMonitoring = async (pluginApi) => {
-  console.log(pluginApi)
-  console.log(pluginApi.utils)
-
   const { constants, inputs, utils, netlifyConfig, packageJson } = pluginApi
   const { git } = utils
 
