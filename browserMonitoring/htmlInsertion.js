@@ -92,7 +92,7 @@ const insertBrowserAgent = async (file) => {
 
 export const insertBrowserMonitoring = async (pluginApi) => {
   const { constants, inputs, utils, netlifyConfig, packageJson } = pluginApi
-  const { build, git } = utils
+  const { git } = utils
 
   const {
     NEWRELIC_ACCOUNT_ID,
